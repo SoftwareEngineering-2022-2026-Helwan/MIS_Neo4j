@@ -1,8 +1,3 @@
-## Cloning
-
-```
-git clone https://github.com/SoftwareEngineering-2022-2026-Helwan/MIS.git
-```
 
 ## After Installion:
 
