@@ -1,25 +1,12 @@
-// import {Movies} from "../db/index.js";
+import {Movies} from "../db/index.js";
 
-// export const task5Controller = async (req, res) => {
+export const task5Controller = async (req, res) => {
 
-//     // multiply each element of score array by 20
-//     const movies = await Movies.updateMany(
-//         { score: { $exists: true } }, 
-//         [
-//             {
-//                 $set: {
-//                     score: {
-//                         $map: {
-//                             input: "$score",       
-//                             as: "scoreValue",          
-//                             in: { $multiply: ["$$scoreValue", 20] } 
-//                         }
-//                     }
-//                 }
-//             }
-//         ]
-//     );
+    let queryString = `match(n3:Person) - [r3:hangOut] -> (n5:Person)
+                    where r3.place = "zayed"
+                    return n3,n5`;
 
-//     res.status(200).json({ status: "Updated", movies: await Movies.find().toArray() });
+let records= await query.run(queryString);
 
-// };
+res.json({message: "nodes created!",records: records.records});
+};

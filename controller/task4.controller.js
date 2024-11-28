@@ -1,40 +1,11 @@
-// import { Movies } from "../db/index.js";
+import { query } from "../db/index.js";
 
-// export const task4Controller = async (req, res) => {
-//     let with_cond = req.cond?? 0;
+export const task4Controller = async (req, res) => {
+    let queryString = `match (n1:Person),(n2:Person),(n3:Person)
+                    where n1.name="hany" AND n2.name="ahmed" AND n3.name="habiba"
+                    return n1,n2,n3`;
+
+    let records= await query.run(queryString);
     
-//     if(with_cond)
-//         {
-//             await Movies.updateMany({score: { $exists: true }}, {$set: {
-//                 score: {
-//                     $cond: [{ $eq: ["$_id", 1] },
-//                     {
-//                         $push: {
-//                             score: {
-//                                 $each: [5], // Value to insert (5)
-//                                 $position: 2 // Insert at the third position (index 2)
-//                             }
-//                         }
-//                     }, 
-//                     {
-//                         $push: {
-//                             score: {
-//                                 $each: [6], // Value to insert (5)
-//                                 $position: 3 // Insert at the third position (index 2)
-//                             }
-//                         }
-//                     }]
-                    
-//                 }
-//             }});
-//     }
-//     else{
-        
-//         await Movies.updateOne({ _id: 1 , score: { $exists: true }}, { $push: { score: { $each: [5], $position: 2 } } });
-        
-//         await Movies.updateMany({ _id: { $ne: 1 }, score: { $exists: true } },{ $push: { score: { $each: [6], $position: 3 } } });   
-//     }
-
-//     let movies = await Movies.find({}).toArray();
-//     res.status(200).json({status: "Updated", movies});
-// };
+    res.json({message: "nodes created!",records: records.records});
+};
