@@ -1,9 +1,11 @@
-import {Movies, Reviews, MOVIE_DATA, REVIEWS_DATA} from "../db/index.js";
+import {query} from "../db/index.js";
 
 export const task1Controller = async(req, res) => 
 {
-    await Movies.insertMany(MOVIE_DATA);
-    await Reviews.insertMany(REVIEWS_DATA);
-
-    res.json({message: "Collection Created and Data Inserted!"});
+    
+    let records= await query.run(`create( f1: Person {name: "Hany", age: "21"})
+                        -[r1:FriendsWith {since: 2022, at: "helwan"}]-> 
+                        (f2:Person {name: "ahmed", age:"20"}) return f1, f2, r1;`);
+    
+    res.json({message: "nodes created!",records: records.records});
 };
