@@ -1,4 +1,4 @@
-import {Movies} from "../db/index.js";
+import {query} from "../db/index.js";
 
 export const task5Controller = async (req, res) => {
 
