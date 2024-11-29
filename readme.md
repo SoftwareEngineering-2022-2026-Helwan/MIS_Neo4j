@@ -1,9 +1,9 @@
-
 ## After Installion:
 
 ```powershell
 npm i
 node app.js
+start neo4j project  with password : 12345678
 ```
 
 ### Use Api Testing tools Like:
